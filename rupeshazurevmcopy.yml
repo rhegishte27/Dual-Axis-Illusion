@@ -16,19 +16,19 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - task: CopyFilesOverSSH@0
-      inputs:
-        sshEndpoint: 'rupeshvm01-service-connection'
-        sourceFolder: '$(System.DefaultWorkingDirectory)'
-        contents: '**/*'
-        targetFolder: '/tmp'
-        readyTimeout: '20000'
-    - task: SSH@0
-      inputs:
-        sshEndpoint: 'rupeshvm01-service-connection'
-        runOptions: 'inline'
-        inline: 'hostname'
-        readyTimeout: '20000'
+    # - task: CopyFilesOverSSH@0
+    #   inputs:
+    #     sshEndpoint: 'rupeshvm01-service-connection'
+    #     sourceFolder: '$(System.DefaultWorkingDirectory)'
+    #     contents: '**/*'
+    #     targetFolder: '/tmp'
+    #     readyTimeout: '20000'
+    # - task: SSH@0
+    #   inputs:
+    #     sshEndpoint: 'rupeshvm01-service-connection'
+    #     runOptions: 'inline'
+    #     inline: 'hostname'
+    #     readyTimeout: '20000'
     - task: AzureFileCopy@4
       inputs:
         SourcePath: '$(System.DefaultWorkingDirectory)'
