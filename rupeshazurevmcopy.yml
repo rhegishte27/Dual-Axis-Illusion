@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+
+stages:
+- stage: Copy
+  displayName: Copy Files
+  jobs:  
+  - job: Copy
+    displayName: Copy
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: CopyFilesOverSSH@0
+      inputs:
+        sshEndpoint: 'rupeshvm01-service-connection'
+        sourceFolder: '$(System.DefaultWorkingDirectory)'
+        contents: '**/*'
+        targetFolder: '/tmp'
+        readyTimeout: '20000'
