@@ -37,5 +37,3 @@ stages:
         inlineScript: |
           sudo apt-get install sshpass -y 
           sshpass -p $(rupeshvmpass) scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r $(System.DefaultWorkingDirectory)/* azureuser@52.172.177.109:/tmp
-        addSpnToEnvironment: true
-        failOnStandardError: true
