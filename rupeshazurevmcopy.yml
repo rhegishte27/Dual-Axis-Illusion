@@ -29,3 +29,14 @@ stages:
         runOptions: 'inline'
         inline: 'hostname'
         readyTimeout: '20000'
+    - task: AzureFileCopy@4
+      inputs:
+        SourcePath: '$(System.DefaultWorkingDirectory)'
+        azureSubscription: 'rupeshvm-rg-connection01'
+        Destination: 'AzureVMs'
+        storage: 'rupeshcanbdeletedrgdiag'
+        resourceGroup: 'RUPESHCANBDELETED_RG'
+        vmsAdminUserName: 'azureuser'
+        vmsAdminPassword: 'Mahindra@123'
+        TargetPath: '/tmp'
+        skipCACheck: false
