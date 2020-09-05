@@ -29,14 +29,11 @@ stages:
     #     runOptions: 'inline'
     #     inline: 'hostname'
     #     readyTimeout: '20000'
-    - task: AzureFileCopy@4
+    - task: AzureCLI@2
       inputs:
-        SourcePath: '$(System.DefaultWorkingDirectory)'
         azureSubscription: 'rupeshvm-rg-connection01'
-        Destination: 'AzureVMs'
-        storage: 'rupeshcanbdeletedrgdiag'
-        resourceGroup: 'RUPESHCANBDELETED_RG'
-        vmsAdminUserName: 'azureuser'
-        vmsAdminPassword: 'Mahindra@123'
-        TargetPath: '/tmp'
-        skipCACheck: false
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r $(System.DefaultWorkingDirectory) azureuser@52.172.177.109/tmp'
+        addSpnToEnvironment: true
+        failOnStandardError: true
