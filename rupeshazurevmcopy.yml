@@ -23,3 +23,9 @@ stages:
         contents: '**/*'
         targetFolder: '/tmp'
         readyTimeout: '20000'
+    - task: SSH@0
+      inputs:
+        sshEndpoint: 'rupeshvm01-service-connection'
+        runOptions: 'inline'
+        inline: 'hostname'
+        readyTimeout: '20000'
