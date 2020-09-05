@@ -34,6 +34,8 @@ stages:
         azureSubscription: 'rupeshvm-rg-connection01'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
-        inlineScript: 'scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r $(System.DefaultWorkingDirectory) azureuser@52.172.177.109/tmp'
+        inlineScript: |
+          apt-get install sshpass -y 
+          sshpass -p $(rupeshvmpass) scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r $(System.DefaultWorkingDirectory) azureuser@52.172.177.109:/tmp
         addSpnToEnvironment: true
         failOnStandardError: true
